@@ -5,12 +5,12 @@ import java.util.Objects;
 public class FiksniBroj extends TelefonskiBroj{
     public enum Grad{SARAJEVO,ZENICA,TUZLA,ORASJE,BIHAC,TRAVNIK,
         LIVNO, SIROKIBRIJEG,MOSTAR,BRCKO, GORAZDE};
-    private String broj;
     private Grad grad;
+    private String broj;
 
-    public FiksniBroj(String broj, Grad grad) {
-        this.broj = broj;
+    public FiksniBroj(Grad grad, String broj) {
         this.grad = grad;
+        this.broj = broj;
     }
 
     @Override
