@@ -18,4 +18,5 @@ public class MedunarodniBroj {
     public String ispisi(){
         return drzava + "/" + broj;
     }
+
 }
