@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.tutorijal03;
 
 import java.util.Objects;
 
-public class FiksniBroj {
+public class FiksniBroj extends TelefonskiBroj{
     public enum Grad{SARAJEVO,ZENICA,TUZLA,ORASJE,BIHAC,TRAVNIK,
         LIVNO, SIROKIBRIJEG,MOSTAR,BRCKO, GORAZDE};
     private String broj;
