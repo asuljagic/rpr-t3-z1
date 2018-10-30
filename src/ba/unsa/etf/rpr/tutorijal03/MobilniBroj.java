@@ -19,5 +19,11 @@ public class MobilniBroj extends TelefonskiBroj {
         return "0" + mobilnaMreza + "/" + broj;
     }
 
+    @Override
+    public int compareTo(Object o){                                                  // compareTo override za poredenje
+        FiksniBroj broj = (FiksniBroj) o;
+        return this.ispisi().compareTo(broj.ispisi());
+    }
+
 
 }
