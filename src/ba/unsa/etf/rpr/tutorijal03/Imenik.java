@@ -1,19 +1,20 @@
 package ba.unsa.etf.rpr.tutorijal03;
 
 import java.util.*;
+import ba.unsa.etf.rpr.tutorijal03.FiksniBroj.Grad;
 
 public class Imenik {
     private static final Object Map = "" ;
 
     public enum Grad{SARAJEVO,ZENICA,TUZLA,ORASJE,BIHAC,TRAVNIK,
         LIVNO, SIROKIBRIJEG,MOSTAR,BRCKO, GORAZDE};
-    private HashMap<String, TelefonskiBroj> imenikMapa;
+    private HashMap<String, TelefonskiBroj> imenikMapa = new HashMap<>();
     //konst bez param cisto da kreira novi imenik
     public Imenik() {
         imenikMapa = new HashMap<String, TelefonskiBroj>();
     }
 
-    public void dodaj(String ime, TelefonskiBroj broj){
+     void dodaj(String ime, TelefonskiBroj broj){
         imenikMapa.put(ime,broj);
     }
 
@@ -22,17 +23,48 @@ public class Imenik {
     }
 
     public String dajIme(TelefonskiBroj broj){
-        //bice implementirano naknadno
+        String s="Ne postoji ime i prezime";
+        for(Map.Entry<String, TelefonskiBroj> entry : imenikMapa.entrySet()){
+            if(entry.getValue().equals(broj))
+                return entry.getKey();
+        }
+        return s;
     }
 
     public String naSlovo(char s){
-        Map.Entry<String, TelefonskiBroj> prolaz;
-        int i = 1;
+        int i = 0;
         String brojevi = "";
-        for(prolaz : imenikMapa.entrySet()){ //prolazi kroz imenik
-            if(prolaz.getKey().charAt(0) == s) //ako se prvo slovo poklapa
-                brojevi = i++ + ". " + prolaz.getKey() + " - " + prolaz.getValue().ispisi() + "\n";
+        for(Map.Entry<String, TelefonskiBroj> entry : imenikMapa.entrySet()){ //prolazi kroz imenik
+            if(entry.getKey().charAt(0) == s) { //ako se prvo slovo poklapa
+                ++i;
+                brojevi = i + ". " + entry.getKey() + " - " + entry.getValue().ispisi() + "\n";
+            }
         }
         return brojevi;
+    }
+
+    public Set<String> izGrada(FiksniBroj.Grad g){
+        TreeSet<String> skupinaImena = new TreeSet<>(); //pogodno zbog sortiranja skupa
+        for (Map.Entry<String,TelefonskiBroj> entry : imenikMapa.entrySet()){
+            if(entry.getValue() instanceof FiksniBroj){
+                if(( (FiksniBroj)entry.getValue()).getGrad().equals(g))
+                    skupinaImena.add(entry.getKey());
+            }
+        }
+        return skupinaImena;
+    }
+
+    public Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g){
+
+        TreeSet<TelefonskiBroj> imenaLjudi = new TreeSet<>();
+        for (Map.Entry<String,TelefonskiBroj> entry : imenikMapa.entrySet()){
+            if(entry.getValue() instanceof FiksniBroj){
+                if(( (FiksniBroj)entry.getValue()).getGrad().equals(g))
+                    imenaLjudi.add(entry.getValue());
+            }
+        }
+
+        return imenaLjudi;
+
     }
 }
