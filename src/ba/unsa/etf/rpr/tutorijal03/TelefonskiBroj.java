@@ -1,8 +1,7 @@
 package ba.unsa.etf.rpr.tutorijal03;
 //apstraktna klasa
-public class TelefonskiBroj {
-    String broj;
-
+public abstract class TelefonskiBroj implements Comparable {
     public abstract String ispisi();
+    @Override
     public abstract int hashCode();
 }
