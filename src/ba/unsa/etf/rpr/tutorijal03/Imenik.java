@@ -9,10 +9,6 @@ public class Imenik {
     public enum Grad{SARAJEVO,ZENICA,TUZLA,ORASJE,BIHAC,TRAVNIK,
         LIVNO, SIROKIBRIJEG,MOSTAR,BRCKO, GORAZDE};
     private HashMap<String, TelefonskiBroj> imenikMapa = new HashMap<>();
-    //konst bez param cisto da kreira novi imenik
-    public Imenik() {
-        imenikMapa = new HashMap<String, TelefonskiBroj>();
-    }
 
      void dodaj(String ime, TelefonskiBroj broj){
         imenikMapa.put(ime,broj);
@@ -56,15 +52,15 @@ public class Imenik {
 
     public Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g){
 
-        TreeSet<TelefonskiBroj> imenaLjudi = new TreeSet<>();
+        TreeSet<TelefonskiBroj> brojeviLjudi = new TreeSet<>();
         for (Map.Entry<String,TelefonskiBroj> entry : imenikMapa.entrySet()){
             if(entry.getValue() instanceof FiksniBroj){
                 if(( (FiksniBroj)entry.getValue()).getGrad().equals(g))
-                    imenaLjudi.add(entry.getValue());
+                    brojeviLjudi.add(entry.getValue());
             }
         }
 
-        return imenaLjudi;
+        return brojeviLjudi;
 
     }
 }
