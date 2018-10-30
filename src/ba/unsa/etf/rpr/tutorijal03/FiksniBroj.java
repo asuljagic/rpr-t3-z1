@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.tutorijal03;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class FiksniBroj extends TelefonskiBroj{
@@ -13,23 +15,75 @@ public class FiksniBroj extends TelefonskiBroj{
         this.broj = broj;
     }
 
-    @Override
-    public int hashCode() {
-        if(this.grad==Grad.TRAVNIK)return 30;
-        if(this.grad==Grad.ORASJE)return 31;
-        if(this.grad==Grad.ZENICA)return 32;
-        if(this.grad==Grad.SARAJEVO)return 33;
-        if(this.grad==Grad.LIVNO)return 34;
-        if(this.grad==Grad.TUZLA)return 35;
-        if(this.grad==Grad.MOSTAR)return 36;
-        if(this.grad==Grad.BIHAC)return 37;
-        if(this.grad==Grad.GORAZDE)return 38;
-        if(this.grad==Grad.SIROKIBRIJEG)return 39;
-        if(this.grad==Grad.BRCKO)return 49;
-        return 0;
+    public Grad getGrad() {
+        return grad;
     }
-    @Override
-    public String ispisi(){
-        return "0" + grad.hashCode() + "/" + broj; //format npr 033/123-456
+
+    public void setGrad(Grad grad) {
+        this.grad = grad;
     }
+
+    public String getBroj() {
+        return broj;
+    }
+
+    public void setBroj(String broj) {
+        this.broj = broj;
+    }
+
+    @Override
+    public String ispisi() {
+        String pozivniBroj = new String();
+        switch (getGrad()) {
+            case TRAVNIK:
+                pozivniBroj += "030";
+                break;
+            case ORASJE:
+                pozivniBroj += "031";
+                break;
+            case ZENICA:
+                pozivniBroj += "032";
+                break;
+            case SARAJEVO:
+                pozivniBroj += "033";
+                break;
+            case LIVNO:
+                pozivniBroj += "034";
+                break;
+            case TUZLA:
+                pozivniBroj += "035";
+                break;
+            case MOSTAR:
+                pozivniBroj += "036";
+                break;
+            case BIHAC:
+                pozivniBroj += "037";
+                break;
+            case GORAZDE:
+                pozivniBroj += "038";
+                break;
+            case SIROKIBRIJEG:
+                pozivniBroj += "039";
+                break;
+            case BRCKO:
+                pozivniBroj += "049";
+                break;
+        }
+
+        pozivniBroj += "/" + broj;
+        return pozivniBroj;
+    }
+
+        @Override
+        public int hashCode() {
+            return getGrad().hashCode() + broj.hashCode();
+        }
+
+    @Override
+    public int compareTo(Object o){                                     // compareTo override za poredenje
+        FiksniBroj broj = (FiksniBroj) o;
+        return this.ispisi().compareTo(broj.ispisi());
+    }
+
+
 }
