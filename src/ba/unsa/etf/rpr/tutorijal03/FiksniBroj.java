@@ -80,7 +80,7 @@ public class FiksniBroj extends TelefonskiBroj{
         }
 
     @Override
-    public int compareTo(Object o){                                     // compareTo override za poredenje
+    public int compareTo(Object o){                                     
         FiksniBroj broj = (FiksniBroj) o;
         return this.ispisi().compareTo(broj.ispisi());
     }
